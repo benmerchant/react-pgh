@@ -31,7 +31,7 @@ function App() {
       time: 0
     }
   ])
-  const [currentTime, setCurrentTime] = useState(938436)
+  const [currentTime, setCurrentTime] = useState(0)
 
   return (
     <div className="App">
@@ -54,17 +54,16 @@ function App() {
               {path}
             </h3>
             <div className="PathList">                
-                  <ul 
-                    
-                  >{stops.map(stop =>
-                      <li key={stop.id}
-                    className="SimpleBorder PathList">
+                  <ul>
+                    {stops.map(stop =>
+                      <li
+                        key={stop.id}
+                        className="SimpleBorder PathList"
+                      >
                         <p>{stop.name}</p>
                       </li>
-                  )}
+                    )}
                   </ul>
-                
-              
             </div>
           </div>
         </div>
