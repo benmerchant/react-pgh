@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="AppContainer">
+        <div className="ContainerHeader">
+          Pittsburgh Paths
+        </div>
+        <div className="ClockArea">
+          <div className="ClockActual">
+            { Date.now() }
+          </div>
+          <div className="ClockButtons">
+            <button>Start</button>
+            <button>Split</button>
+          </div>
+          <div className="PathArea">
+            <div className="PathHeader">
+              Path Name
+            </div>
+            <div className="PathList">
+              <ul>Stop 1</ul>
+              <ul>Stop 2</ul>
+              <ul>Stop 3</ul>
+              <ul>Stop 4</ul>
+              <ul>Stop 5</ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
