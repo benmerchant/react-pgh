@@ -44,12 +44,20 @@ function App() {
   const formattedTime = time => {
    return Math.trunc((time / 1000) / 60) + ':' + time / 1000
   }
+  let timer
   const startClock = time => {
-    setClockRunning(false ? true : true); // ha! this cant be right
-    setInterval(() => {
-      time = time + 1;
-      setCurrentTime(time)
-    }, Math.pow(1000));
+    if (!lastStop) setClockRunning(false ? true : true); // ha! this cant be right
+    else {
+      setClockRunning(false)
+    }
+    if (lastStop) {
+        endClock()
+    } else {
+      timer = setInterval(() => {
+        time++;
+        setCurrentTime(time)
+    }, 1);
+    }
   }
   const captureSplit = (time, stop) => {
     if (!clockRunning) alert('this should never happen')
@@ -59,9 +67,13 @@ function App() {
       setLastStop(true)
     }
     stops[currentStop].time = currentTime
-    console.log(currentStop);
+    console.log(currentStop, currentTime);
   }
-
+  const endClock = () => {
+    if (clockRunning) setClockRunning(false)
+    clearInterval(timer)
+    console.log('end')
+  }
   
   return (
     <div className="App">
@@ -92,7 +104,7 @@ function App() {
                         key={stop.order}
                         className={stop.order === currentStop ? 'activeStop' : ''}
                       >
-                        <p>{stop.name} = {stop.time}</p>
+                        <p>{stop.name} = {stop.order === currentStop ? formattedTime(currentTime) : formattedTime(stop.time)}</p>
                       </li>
                     )}
                   </ul>
