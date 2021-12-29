@@ -30,3 +30,7 @@
   padding: 5px;
   margin: 0;
 }
+
+.activeStop {
+  background-color: cadetblue;
+}
