@@ -33,6 +33,19 @@ function App() {
   ])
   const [currentTime, setCurrentTime] = useState(0)
 
+  const formattedTime = time => {
+   return Math.trunc((time / 1000) / 60) + ':' + time / 1000
+  }
+  let clockRunning = false;
+  const startClock = time => {
+    clockRunning = clockRunning === false ? true : true; // ha! this cant be right
+    setInterval(() => {
+      time = time + 1;
+      setCurrentTime(time)
+    }, Math.pow(1000));
+  }
+
+  
   return (
     <div className="App">
       <div className="AppContainer SimpleBorder">
@@ -41,12 +54,15 @@ function App() {
         </div>
         <div className="ClockArea SimpleBorder">
           <div className="ClockActual SimpleBorder">
-            { Math.trunc((currentTime / 1000) / 60)  }
-            :
-            { currentTime / 1000 }
+            { formattedTime(currentTime) }
+            
           </div>
           <div className="ClockButtons">
-            <button>Start</button>
+            <button
+              onClick={() => {
+                startClock(currentTime)
+              }}
+            >Start</button>
             <button>Split</button>
           </div>
           <div className="PathArea SimpleBorder">
